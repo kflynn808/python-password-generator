@@ -4,6 +4,8 @@ import random
 import argparse
 import string
 
+
+
 def main():
     parser = argparse.ArgumentParser("Python Password Generator")
     parser.add_argument(
@@ -31,7 +33,7 @@ def main():
         type=int,
         help="Length of the string"
     )
-    
+    length_char = 16
     args = parser.parse_args()
     # creating the characters variable and adding onto it allows us to dynamically
     # choose what type of characters to use based on the arguments and values passed 
