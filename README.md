@@ -3,9 +3,15 @@
 <h2>Description</h2>
 <p>This is a very simple CLI tool that I made to get used to the GitHub workflow. It's purpose is to create a random string of characters that you could use as a password. The flags passed allow you to change what type of characters are used in the string, as well as how long the string will be.</p>
 
+<h2>How To Install</h2>
+
+- Make sure you have python installed
+- In the top right click the green '<>code' button and download the .zip file
+- Extract the zip file and you're ready to go!
+
 <h2>How To Use</h2>
 
-Navigate to the directory containing ppg.py and run this command > `python ppg.py [flag you want to use]`
+Inside of your terminal navigate to the directory containing ppg.py and run this command > `python ppg.py [flag you want to use]`
 
 <h2>Flags</h2>
 
