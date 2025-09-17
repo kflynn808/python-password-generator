@@ -21,12 +21,12 @@ def main():
     parser.add_argument(
         "-n", "--numbers",
         action="store_true",
-        help="Uses numbers in the string"
+        help="Use numbers in the string"
     )
     parser.add_argument(
         "-r", "--random",
         action="store_true",
-        help="Creates a strong random string using all character types (default: 16 char long)"
+        help="Create a strong random string using all character types (default: 16 char long)"
     )
     parser.add_argument(
         "-l", "--length",
@@ -46,7 +46,6 @@ def main():
         characters += string.digits        
     elif args.random:
         characters = string.ascii_letters + string.punctuation + string.digits
-        length_char = 16
     elif args.length:
         length_char = args.length
     else:

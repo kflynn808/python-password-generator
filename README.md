@@ -22,8 +22,8 @@ options:
   -h, --help           show this help message and exit
   -s, --special        Use special characters in the string (!,@,#,etc.)
   -c, --capitals       Use capital letters in the string
-  -n, --numbers        Uses numbers in the string
-  -r, --random         Creates a strong random string using all character
+  -n, --numbers        Use numbers in the string
+  -r, --random         Create a strong random string using all character
                        types (default: 16 char long)
   -l, --length LENGTH  Length of the string
 ```
