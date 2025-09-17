@@ -5,7 +5,7 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description="Hello World CLI")
-    parser.add_arguments(
+    parser.add_argument(
         "-n", "--name",
         type=str,
         help="Name to greet"
