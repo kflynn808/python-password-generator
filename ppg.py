@@ -2,6 +2,7 @@ import os
 import sys
 import random
 import argparse
+import string
 
 def main():
     parser = argparse.ArgumentParser("Python Password Generator")
@@ -21,18 +22,36 @@ def main():
         help="Uses numbers in the string"
     )
     parser.add_argument(
+        "-r", "--random",
+        action="store_true",
+        help="Creates a strong random string using all character types (default: 16 char long)"
+    )
+    parser.add_argument(
         "-l", "--length",
         type=int,
         help="Length of the string"
     )
-    parser.add_argument(
-        "-r", "--random",
-        action="store_true",
-        help="Creates a strong random string using all characters (default: 16 char long)"
-    )
     
-    # we execute at the end so all arguments are added
     args = parser.parse_args()
+    # creating the characters variable and adding onto it allows us to dynamically
+    # choose what type of characters to use based on the arguments and values passed 
+    characters = string.ascii_lowercase
+    if args.special:
+        characters += string.punctuation
+    elif args.capitals:
+        characters += string.ascii_uppercase        
+    elif args.numbers:
+        characters += string.digits        
+    elif args.random:
+        characters = string.ascii_letters + string.punctuation + string.digits
+        length_char = 16
+    elif args.length:
+        length_char = args.length
+    else:
+        parser.print_help()
+        return
+    random_string = ''.join(random.choice(characters) for i in range(length_char))    
+    print(f"[*] Generated String:> {random_string} ")   
 
 if __name__ == "__main__":
     main()
