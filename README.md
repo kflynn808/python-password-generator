@@ -17,15 +17,23 @@ Inside of your terminal navigate to the directory containing ppg.py and run this
 
 ```
 usage: Python Password Generator [-h] [-s] [-c] [-n] [-r] [-l LENGTH]
+                                 [-cS COUNT_SPECIAL] [-cC COUNT_CAPITAL]
+                                 [-cN COUNT_NUMBERS]
 
 options:
-  -h, --help           show this help message and exit
-  -s, --special        Use special characters in the string (!,@,#,etc.)
-  -c, --capitals       Use capital letters in the string
-  -n, --numbers        Use numbers in the string
-  -r, --random         Create a strong random string using all character
-                       types (default: 16 char long)
-  -l, --length LENGTH  Length of the string
+  -h, --help            show this help message and exit
+  -s, --special         Use special characters in the string (!,@,#,etc.)
+  -c, --capitals        Use capital letters in the string
+  -n, --numbers         Use numbers in the string
+  -r, --random          Create a strong random string using all character
+                        types (default: 16 char long)
+  -l, --length LENGTH   Length of the string
+  -cS, --count-special COUNT_SPECIAL
+                        Count of special characters used in the string
+  -cC, --count-capital COUNT_CAPITAL
+                        Count of capital letters used in the string
+  -cN, --count-numbers COUNT_NUMBERS
+                        Count of numbers used in the string
 ```
 
 <h2>Example Usage</h2>
