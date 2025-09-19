@@ -36,7 +36,7 @@ def main():
     length_char = 16
     args = parser.parse_args()
     # creating the characters variable and adding onto it allows us to dynamically
-    # choose what type of characters to use based on the arguments and values passed 
+    # choose what type of characters to use based on the flags passed 
     characters = string.ascii_lowercase
     if args.special:
         characters += string.punctuation
