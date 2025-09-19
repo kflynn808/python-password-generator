@@ -8,20 +8,19 @@ lower_list = list(string.ascii_lowercase)
 upper_list = list(string.ascii_uppercase)
 number_list = list(string.digits)
 special_list = list(string.punctuation)
-non_valid = ["'","\"","`",".","," ]
 
+# some punctuation characters aren't good for passwords
+# so we remove the non valid characters early so we don't have to parse later
+non_valid = ["'","\"","`",".","," ]
 for x in non_valid:
     while x in special_list:
         special_list.remove(x)
 
-
-
+# wrote this function to minimize copy and paste
 def getRandomChars(char_list, char_count):
-
     new_chars = []
     for x in range(char_count):
         new_chars.append(random.choice(char_list))
-    
     return new_chars
 
 
@@ -81,6 +80,9 @@ def main():
     
     args = parser.parse_args()
 
+    # removed elif statements because special_count, capital_count
+    # and number_count were not being set a value, switching to if 
+    # solved this problem
     if args.special:
         is_special = True
     if args.capitals:
@@ -105,7 +107,6 @@ def main():
     if args.count_capital:
         capital_count = args.count_capital
         is_upper = True    
-
     if args.count_numbers:
         numbers_count = args.count_numbers
         is_number = True       
@@ -119,18 +120,24 @@ def main():
     if is_number:
         string_lists.append(getRandomChars(number_list, number_count))
     
+    # we want the lowercase characters to fill the rest of the string
+    # we count the total amount of characters requested in the flags (special, capital, numbers) to subtract
+    # from the string length assigned. if there are no flags passed we fill the whole string with lowercase letters
     total_count = special_count + capital_count + number_count
-
     if total_count > 0:
         lower_count = length_char - total_count
     if total_count == 0:
         lower_count = length_char
     string_lists.append(getRandomChars(lower_list, lower_count))
+    
+    # In order to join the string properly we have to flatten the list before joining it (removes the extra brackets)
     flat_string_list = [item for sublist in string_lists for item in sublist]
     random_string = ''.join(random.choice(flat_string_list) for i in range(length_char))    
+    
     if random_string == '':
         parser.print_help()
         return
+    
     print(f"[*] Generated String:> {random_string} ")   
 
 if __name__ == "__main__":
