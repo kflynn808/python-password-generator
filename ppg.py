@@ -64,7 +64,7 @@ def main():
     parser.add_argument(
         "-cC", "--count-capital",
         type=int,
-        help="Count of capital lettersused in the string"
+        help="Count of capital letters used in the string"
     )
     parser.add_argument(
         "-cN", "--count-numbers",
