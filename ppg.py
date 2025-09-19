@@ -14,10 +14,6 @@ for x in non_valid:
     while x in special_list:
         special_list.remove(x)
 
-is_upper = False
-is_number = False
-is_special = False 
-is_random = False
 
 
 def getRandomChars(char_list, char_count):
@@ -30,6 +26,11 @@ def getRandomChars(char_list, char_count):
 
 
 def main():
+    is_upper = False
+    is_number = False
+    is_special = False 
+    is_random = False
+
     parser = argparse.ArgumentParser("Python Password Generator")
     parser.add_argument(
         "-s", "--special",
@@ -72,41 +73,64 @@ def main():
         help="Count of numbers used in the string"
     )
 
-    length_char = 16
-    special_count = 4
-    capital_count = 4
-    lower_count = 4 # lowercase letters count
-    number_count = 4
+    length_char = 0
+    special_count = 0
+    capital_count = 0
+    lower_count = 0 # lowercase letters count
+    number_count = 0
     
     args = parser.parse_args()
 
-    characters = string.ascii_lowercase
     if args.special:
         is_special = True
-    elif args.capitals:
+    if args.capitals:
         is_upper = True        
-    elif args.numbers:
+    if args.numbers:
         is_number = True       
-    elif args.random:
+    if args.random:
         is_random = True
-    elif args.length:
+        is_special = True
+        is_capital = True
+        is_number = True
+        length_char = 16
+        special_count = 4
+        capital_count = 4
+        lower_count = 4 
+        number_count = 4
+    if args.length:
         length_char = args.length
-    elif args.count_special:
-        special_count = args.count_special
-    elif args.count_capital:
+    if args.count_special:
+        special_count += args.count_special
+        is_special = True
+    if args.count_capital:
         capital_count = args.count_capital
-    elif args.count_numbers:
-        numbers_count = count_numbers
-    else:
+        is_upper = True    
+
+    if args.count_numbers:
+        numbers_count = args.count_numbers
+        is_number = True       
+
+    string_lists = []
+
+    if is_special:
+        string_lists.append(getRandomChars(special_list, special_count))
+    if is_upper:
+        string_lists.append(getRandomChars(upper_list, capital_count))
+    if is_number:
+        string_lists.append(getRandomChars(number_list, number_count))
+    
+    total_count = special_count + capital_count + number_count
+
+    if total_count > 0:
+        lower_count = length_char - total_count
+    if total_count == 0:
+        lower_count = length_char
+    string_lists.append(getRandomChars(lower_list, lower_count))
+    flat_string_list = [item for sublist in string_lists for item in sublist]
+    random_string = ''.join(random.choice(flat_string_list) for i in range(length_char))    
+    if random_string == '':
         parser.print_help()
         return
-
-
-    
-
-
-
-    random_string = ''.join(random.choice(characters) for i in range(length_char))    
     print(f"[*] Generated String:> {random_string} ")   
 
 if __name__ == "__main__":
